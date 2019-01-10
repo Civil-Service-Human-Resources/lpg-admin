@@ -19,6 +19,7 @@
             <p class="govuk-body">Learners that have started or completed the course will still be able to see and access the course in their learner records.</p>
             <form method="post" action="/content-management/courses/{{course.id}}/status">
                 <p class="govuk-body"><strong>Archiving a course is irreversible<strong></p>
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 <input type="hidden" name="status" value="Archived" />
                 {{ govukButton({
                     text: "Archive this course",

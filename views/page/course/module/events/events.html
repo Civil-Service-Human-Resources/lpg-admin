@@ -40,6 +40,7 @@
 
             <form action="/content-management/courses/{{courseId}}/modules/{{moduleId}}/events/{{event.id}}" method="post">
                 <input type="hidden" name="eventJson" value="{{eventJson}}" />
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 {% if errors.fields.minDate or errors.fields.dateRanges or errors.fields.invalidDate %}
                     {{ govukDateInput({
                         id: "start-date",
@@ -119,14 +120,14 @@
 
             {% if event.dateRanges and event.dateRanges.length > 0 %}
             <form action="/content-management/courses/{{courseId}}/modules/{{moduleId}}/events/location/create" method="post">
-            <input type="hidden" name="eventJson" value="{{eventJson}}" />
-
-            <div class="button-container">
-                {{ govukButton({
-                text: "Continue",
-                classes: "govuk-button"
-                }) }}
-            </div>
+                <input type="hidden" name="eventJson" value="{{eventJson}}" />
+                 <input type="hidden" name="_csrf" value="{{_csrf}}" />
+                <div class="button-container">
+                    {{ govukButton({
+                    text: "Continue",
+                    classes: "govuk-button"
+                    }) }}
+                </div>
             </form>
             {% endif %}
             <a href="/content-management/courses/{{courseId}}/overview">Cancel</a>

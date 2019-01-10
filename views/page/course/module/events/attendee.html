@@ -31,6 +31,7 @@
                             </span>
                             {% if booking.status === "Requested" %}
                                 <form action="/content-management/courses/{{ course.id }}/modules/{{ module.id }}/events/{{ event.id }}/attendee/{{ booking.id }}/update" method="post" class="attendee-button">
+                                    <input type="hidden" name="_csrf" value="{{_csrf}}" />
                                     <button type="submit" class="linkish-button">Change to booked</button>
                                 </form>
                             {% endif %}

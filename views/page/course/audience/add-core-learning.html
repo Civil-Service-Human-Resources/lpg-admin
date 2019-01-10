@@ -16,6 +16,7 @@
             <h1 class="govuk-body form-header govuk-!-font-size-24 no-margin">{{i18n.audience.pageText.addNew}}</h1>
             <h2 class="govuk-heading-m govuk-!-font-size-36">Core Learning</h2>
             <form action="/content-management/courses/{{ course.id }}/audiences/{{ audience.id }}/add-core-learning" method="post" class="audience-form">
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 <div class="govuk-fieldset audience-fieldset">
                     {% set interestList = [] %}
                     {% for interest in interests._embedded.interests %}

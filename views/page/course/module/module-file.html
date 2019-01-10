@@ -62,6 +62,7 @@
                 <input id="courseId" name="courseId" type="hidden" value="{{course.id}}">
                 <input id="mediaId" name="mediaId" type="hidden" value="{{media.id}}">
                 <input id="fileType" name="fileType" type="hidden" value="{{type}}">
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 <fieldset class="govuk-fieldset">
                     {% if errors.fields.title %}
                         {{ govukInput({

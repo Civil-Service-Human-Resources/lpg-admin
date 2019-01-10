@@ -23,6 +23,7 @@
             <h2 class="govuk-heading-m govuk-!-font-size-36">Type of audience</h2>
             <form action="/content-management/courses/{{ course.id }}/audiences/{{(audience.id + '/') if audience}}type" method="post" class="audience-form">
                 <p class="govuk-body">You can limit who this course is shown to</p>
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 <input type="hidden" name="name" value="{{sessionFlash.audienceName}}" />
                 {% if errors.fields %}
                     {% set classNames = "govuk-fieldset audience-fieldset govuk-form-group--error" %}

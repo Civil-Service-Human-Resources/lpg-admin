@@ -22,7 +22,7 @@
 
             <form class="govuk-form" action="/content-management/courses/{{courseId}}/modules/{{moduleId}}/events/location/{{event.id}}" method="post">
                 <input type="hidden" name="eventJson" value="{{eventJson}}" />
-
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 <fieldset class="govuk-fieldset">
                     {% if errors.fields.location %}
                         {{ govukInput({

@@ -13,8 +13,8 @@
         <div class="govuk-grid-column-two-thirds">
             <h3 class="govuk-body form-header govuk-!-font-size-24">Add a new course</h3>
             <h1 class="govuk-heading-m govuk-!-font-size-36">Learning Providers</h1>
-
             <form action="/form-hander" method="post">
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 <fieldset class="govuk-fieldset select-with-button">
                     {{ govukSelect({
                         id: "learning-providers",

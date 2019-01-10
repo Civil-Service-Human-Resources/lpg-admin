@@ -15,6 +15,7 @@
             <h1 class="govuk-body form-header govuk-!-font-size-24 no-margin">{{i18n.audience.pageText.addNew}}</h1>
             <h2 class="govuk-heading-m govuk-!-font-size-36">Area of work</h2>
             <form action="/content-management/courses/{{ course.id }}/audiences/{{audience.id}}/area-of-work" method="post" class="audience-form">
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 {% set professions = [] %}
                 {% for areaOfWork in areasOfWork._embedded.professions %}
                     {% set profession = professions.push({

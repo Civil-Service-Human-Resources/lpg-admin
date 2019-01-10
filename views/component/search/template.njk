@@ -1,5 +1,6 @@
 <div class="search-container">
 	<form action="/content-management/search/" method="get">
+	 	<input type="hidden" name="_csrf" value="{{_csrf}}" />
 		<input class="govuk-input search" id="q" type="text" name="q" value="{{query}}" placeholder="Search" />
 		<button class="search-button">Search</button>
 	</form>

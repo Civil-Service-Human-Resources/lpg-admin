@@ -38,6 +38,7 @@
                         </div>
                         {% if audience.departments and audience.departments.length > 0 %}
                             <form action="/content-management/courses/{{course.id}}/audiences/{{audience.id}}/organisation/delete" method="post" class="audience-link">
+                                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                                 <button class="govuk-link audience-link linkish-button">Delete</button>
                             </form>
                         {% else %}
@@ -55,6 +56,7 @@
                         </div>
                         {% if audience.areasOfWork and audience.areasOfWork.length > 0 %}
                             <form action="/content-management/courses/{{course.id}}/audiences/{{audience.id}}/area-of-work/delete" method="post" class="audience-link">
+                                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                                 <button class="govuk-link linkish-button">Delete</button>
                             </form>
                         {% else %}
@@ -71,7 +73,7 @@
                             {% endif %}
                         </div>
                         {% if audience.interests.length > 0 %}
-                            <form action="/content-management/courses/{{course.id}}/audiences/{{audience.id}}/core-learning/delete" method="post" class="audience-link"><button class="govuk-link linkish-button">Delete</button></form>
+                            <form action="/content-management/courses/{{course.id}}/audiences/{{audience.id}}/core-learning/delete" method="post" class="audience-link"><input type="hidden" name="_csrf" value="{{_csrf}}" /><button class="govuk-link linkish-button">Delete</button></form>
                         {% else %}
                             <a href="/content-management/courses/{{course.id}}/audiences/{{audience.id}}/add-core-learning" class="govuk-link audience-link">Add</a>
                         {% endif %}
@@ -87,6 +89,7 @@
                         </div>
                         {% if audience.grades and audience.grades.length > 0 %}
                             <form action="/content-management/courses/{{course.id}}/audiences/{{audience.id}}/grades/delete" method="post" class="audience-link">
+                                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                                 <button class="govuk-link linkish-button">Delete</button>
                             </form>
                         {% else %}
@@ -105,6 +108,7 @@
                             </div>
                             {% if audience.requiredBy %}
                                 <form action="/content-management/courses/{{course.id}}/audiences/{{audience.id}}/deadline/delete" method="post" class="audience-link">
+                                    <input type="hidden" name="_csrf" value="{{_csrf}}" />
                                     <button class="govuk-link linkish-button">Delete</button>
                                 </form>
                             {% else %}
@@ -140,6 +144,7 @@
                         </div>
                         {% if audienceEvent %}
                             <form action="/content-management/courses/{{course.id}}/audiences/{{audience.id}}/event/delete" method="post">
+                                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                                 <button class="govuk-link audience-link linkish-button">Delete</button>
                             </form>
                         {% else %}

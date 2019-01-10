@@ -26,7 +26,7 @@
             {% endif %}
 
             <form action="/content-management/learning-providers/{{learningProvider.id}}/terms-and-conditions/{{termsAndConditions.id}}" method="post" class="module-form">
-
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 {% if termsAndConditions.id %}
                     <input type="hidden" value="{{termsAndConditions.id}}" name="id"/>
                 {% endif %}

@@ -15,6 +15,7 @@
             <h1 class="govuk-body form-header govuk-!-font-size-24 no-margin">{{i18n.audience.pageText.addNew}}</h1>
             <h2 class="govuk-heading-m govuk-!-font-size-36">Grades</h2>
             <form action="/content-management/courses/{{course.id}}/audiences/{{audience.id}}/grades" method="post">
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 {% set gradeList = [] %}
                 {% for grade in grades._embedded.grades %}
                     {% set list = gradeList.push({

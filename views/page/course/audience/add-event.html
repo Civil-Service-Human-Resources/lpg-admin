@@ -25,6 +25,7 @@
                 <p class="govuk-body">Select an event from list for your new audience</p>
             
                 <form action="/content-management/courses/{{course.id}}/audiences/{{audience.id}}/event" method="post">
+                    <input type="hidden" name="_csrf" value="{{_csrf}}" />
                     {% set eventList = [] %}
                     {% for event in courseEvents %}
                         {% set eventListLength = eventList.push({

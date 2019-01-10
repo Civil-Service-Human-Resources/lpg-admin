@@ -118,6 +118,7 @@
                 <div class="add-invitee">
                     <h3 class="govuk-heading-m">Invite learners</h3>
                     <form action="/content-management/courses/{{course.id}}/modules/{{module.id}}/events/{{event.id}}/invite" method="post" class="attendee-form">
+                        <input type="hidden" name="_csrf" value="{{_csrf}}" />
                         <p class="govuk-body no-margin"><strong>Email address of invitee</strong></p>
                         <div class="input-with-button invitee">
                             {% if errors.fields %}

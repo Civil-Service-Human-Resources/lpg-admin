@@ -39,7 +39,8 @@
             {% set module = sessionFlash.module %}
 
             <form action="/content-management/courses/{{course.id}}/module-youtube/{{module.id}}" method="post" class="module-form">
-                <input name="type" type="hidden" value="video">
+                <input name="type" type="hidden" value="video" />
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 <fieldset class="govuk-fieldset">
                     {% if errors.fields.title %}
                         {{ govukInput({

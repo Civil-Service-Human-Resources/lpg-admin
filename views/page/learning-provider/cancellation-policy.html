@@ -41,6 +41,7 @@
             {% endif %}
 
             <form action="/content-management/learning-providers/{{learningProvider.id}}/cancellation-policies/{{ cancellationPolicy.id }}" method="post" class="module-form">
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 {% if cancellationPolicy.id %}
                 <input type="hidden" name="id" value="{{cancellationPolicy.id}}"/>
                 {% endif %}

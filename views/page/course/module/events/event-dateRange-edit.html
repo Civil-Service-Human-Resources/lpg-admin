@@ -45,6 +45,7 @@
             {% endif %}
 
             <form action="/content-management/courses/{{courseId}}/modules/{{moduleId}}/events/{{event.id}}/dateRanges/{{dateRangeIndex}}" method="post">
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 {% if errors.fields.minDate or errors.fields.dateRanges or errors.fields.invalidDate %}
                     {{ govukDateInput({
                         id: "start-date",

@@ -24,6 +24,7 @@
         <p class="govuk-body">The event will be labelled as cancelled on the event overview page.</p>
         <p class="govuk-body">A cancellation cannot be undone.</p>
         <form action="{{'/content-management/courses/' + courseId + '/modules/' + moduleId + '/events/' + event.id + '/cancel'}}" method="post">
+            <input type="hidden" name="_csrf" value="{{_csrf}}" />
             <input type="hidden" value="{{event.id}}" name="id">
                 {{ govukSelect({
                     id: "cancellationReason",

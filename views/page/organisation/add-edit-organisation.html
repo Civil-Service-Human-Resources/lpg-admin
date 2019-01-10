@@ -28,6 +28,7 @@
 <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
               <form action="/content-management/organisations/{{ organisationalUnit.id }}" method="post">
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 <div class="govuk-form-group">
                     <h2 class="govuk-heading-s no-margin">{{ i18n.organisations.text.parent }}</h2>
                     <p class="govuk-body custom-margin">If your new organisation has an existing parent, find them in the list below.</p>

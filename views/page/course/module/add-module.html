@@ -62,6 +62,7 @@
                     <form action="/content-management/courses/{{ course.id }}/add-module" method="post" class="module-form">
                         <h3 class="govuk-heading-m">Add a module</h3>
                         <p class="govuk-body">Choose the type of learning you wish to add to the course</p>
+                        <input type="hidden" name="_csrf" value="{{_csrf}}" />
                         <fieldset class="govuk-fieldset module-selector">
                             {{ govukSelect({
                                 id: "modules",

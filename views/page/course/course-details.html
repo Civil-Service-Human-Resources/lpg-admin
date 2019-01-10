@@ -17,7 +17,6 @@
     {% set errors = sessionFlash.errors %}
     {% set form = sessionFlash.form %}
     {% set course = sessionFlash.course %}
-
     {{ errorSummary(errors.fields) }}
 
     <div class="govuk-grid-row">
@@ -25,6 +24,7 @@
             <h1 class="govuk-body form-header govuk-!-font-size-24">{{i18n.course.text.editDetails if course else i18n.course.text.addNew}}</h1>
             <h2 class="govuk-heading-m govuk-!-font-size-36">{{i18n.course.text.details}}</h2>
             <form action="/content-management/courses/details/{{ course.id }}" method="post" class="course-form">
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 {% if course.id %}
                 <input type="hidden" name="id" value="{{ form.id|default(course.id) }}">
                 {% endif %}

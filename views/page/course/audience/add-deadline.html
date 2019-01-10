@@ -18,6 +18,7 @@
             <h1 class="govuk-body form-header govuk-!-font-size-24 no-margin">{{i18n.audience.pageText.addNew}}</h1>
             <h2 class="govuk-heading-m govuk-!-font-size-36">Add a deadline date</h2>
             <form class="audience-form" action="/content-management/courses/{{course.id}}/audiences/{{audience.id}}/deadline" method="post">
+                <input type="hidden" name="_csrf" value="{{_csrf}}" />
                 {% if errors.fields.requiredBy %}
                     {{ govukDateInput({
                         id: "deadline",

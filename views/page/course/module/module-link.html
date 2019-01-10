@@ -29,6 +29,7 @@
         <p class="govuk-body no-margin">You are {% if module.id %} editing {% else %}adding{% endif %} a <strong>link</strong> module</p>
 
         <form action="/content-management/courses/{{ course.id }}/module-link/{{ module.id }}" method="post" class="module-form">
+            <input type="hidden" name="_csrf" value="{{_csrf}}" />
             {% if module.id %}
             <input type="hidden" name="id" value="{{ form.id|default(module.id) }}">
             {% endif %}

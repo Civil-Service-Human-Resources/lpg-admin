@@ -13,6 +13,7 @@ import moment = require('moment')
 import {DateTime} from './lib/dateTime'
 import * as asyncHandler from 'express-async-handler'
 import * as errorController from './lib/errorHandler'
+import * as lusca from 'lusca'
 
 Properties.initialize()
 const logger = log4js.getLogger('server')
@@ -105,6 +106,8 @@ app.use(
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+
+app.use(lusca.csrf())
 
 ctx.auth.configure(app, authorisedRole)
 app.use(ctx.addToResponseLocals())
