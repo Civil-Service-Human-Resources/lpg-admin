@@ -108,6 +108,5 @@
 {% block bodyEnd %}
   <script src="/govuk-frontend/all.js"></script>
   <script>window.GOVUKFrontend.initAll()</script>
-  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' ' : 'js-enabled');</script>
 {% endblock %}

@@ -6,9 +6,10 @@
 {% block pageTitle %}{{ i18n['module_add_title'] }} - {{ i18n['proposition_name'] }}{% endblock %}
 
 {% set banner = true %}
-{% set backButton = "/content-management" %}
 
 {% block content %}
+
+    <a href="/Course-management/courses/{{course.id}}/overview" class="govuk-body return-to-course">Course overview</a>
 
     {% set errors = sessionFlash.errors %}
     {{ errorSummary(errors.fields) }}
@@ -59,7 +60,7 @@
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 <div class="added-modules govuk-!-padding-bottom-5 govuk-!-padding-top-5">
-                    <form action="/content-management/courses/{{ course.id }}/add-module" method="post" class="module-form">
+                    <form action="/content-management/courses/{{course.id}}/add-module" method="post" class="module-form">
                         <h3 class="govuk-heading-m">Add a module</h3>
                         <p class="govuk-body">Choose the type of learning you wish to add to the course</p>
                         <fieldset class="govuk-fieldset module-selector">
@@ -109,7 +110,7 @@
                         </fieldset>
                     </form>
                 <div class="button-container">
-                    <a class="govuk-button" href="/content-management/courses/{{course.id}}/preview">Return to course</a>
+                    <a class="govuk-button" href="/content-management/courses/{{course.id}}/preview">Course overview</a>
                 </div>
             </div>
         </div>

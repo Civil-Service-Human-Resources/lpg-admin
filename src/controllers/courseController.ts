@@ -149,7 +149,7 @@ export class CourseController implements FormController {
 
 			req.session!.sessionFlash = {courseAddedSuccessMessage: 'course_added_success_message'}
 			req.session!.save(() => {
-				res.redirect(`/content-management/courses/${savedCourse.id}/overview`)
+				res.redirect(`/content-management/courses/${savedCourse.id}/add-module`)
 			})
 		}
 	}
