@@ -98,19 +98,30 @@ export class AudienceController {
 	}
 
 	getConfigureAudience() {
-		return async (req: Request, res: Response) => {
+
+			return async (req: Request, res: Response) => {
 			const departmentCodeToName = await this.csrsService.getDepartmentCodeToNameMapping()
 			const gradeCodeToName = await this.csrsService.getGradeCodeToNameMapping()
 			const audienceIdToEvent = this.courseService.getAudienceIdToEventMapping(res.locals.course)
 			const requiredBy = res.locals.audience.requiredBy ? new Date(res.locals.audience.requiredBy) : null
+			const audiencesForDepartment = res.locals.audience.departments
+
+			for (let i = 0; i < audiencesForDepartment.length; i++) {
+				if(audiencesForDepartment[i].includes("-"))
+				{
+					audiencesForDepartment[i] = audiencesForDepartment[i].replace("-", 'dash');
+				}
+			}
+
 			res.render('page/course/audience/configure-audience', {
 				requiredBy,
 				AudienceType: Audience.Type,
 				departmentCodeToName,
 				gradeCodeToName,
 				audienceIdToEvent,
+				audiencesForDepartment
 			})
-		}
+	 	}
 	}
 
 	getOrganisation() {
@@ -158,7 +169,8 @@ export class AudienceController {
 			const selectedOrganisations: OrganisationalUnit[] = res.locals.audience.departments
 
 			selectedOrganisations.forEach((item, index) => {
-				if (item == organisationalUnitCode) {
+				// @ts-ignore
+				if (item === organisationalUnitCode) {
 					selectedOrganisations.splice(index, 1)
 				}
 			})

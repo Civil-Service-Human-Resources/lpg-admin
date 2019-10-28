@@ -83,6 +83,26 @@ export class CourseController implements FormController {
 
 			const sortedAudiences = await this.courseService.sortAudiences(res.locals.course.audiences)
 
+			for (let i = 0; i < sortedAudiences.length; i++) {
+				if(sortedAudiences[i].name.includes("-"))
+				{
+					sortedAudiences[i].name = sortedAudiences[i].name.replace("-", 'dash');
+				}
+			}
+
+			for (let i = 0; i < sortedAudiences.length; i++) {
+
+				const departments = sortedAudiences[i].departments
+
+				for(let y = 0; y < departments.length; y++)
+				{
+					if(departments[y].includes("-"))
+					{
+						sortedAudiences[i].departments[y] = sortedAudiences[i].departments[y].replace("-", 'dash');
+					}
+				}
+			}
+
 			res.render('page/course/course-overview', {
 				faceToFaceModules,
 				AudienceType: Audience.Type,

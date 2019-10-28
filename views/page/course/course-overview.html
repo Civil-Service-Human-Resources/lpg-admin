@@ -22,7 +22,7 @@
 </div>
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-       
+
         {% set courseAddedSuccessMessage = sessionFlash.courseAddedSuccessMessage%}
 
         {% if courseAddedSuccessMessage %}
@@ -46,7 +46,7 @@
         </div>
         {% if not identity.isSupplierAuthor() %}
         <div class="section">
-            <div class="title-container"> 
+            <div class="title-container">
                 <h3 class="govuk-heading-m">Course audiences</h3>
                 {% if course.status !== "Archived" and identity.hasLearningCreate() %}
                 <form action="/content-management/courses/{{ course.id }}/audiences/" method="post">
@@ -55,7 +55,7 @@
                 {% endif %}
             </div>
             {% block audiences %}
-                {{ audiences(course, sortedAudiences, identity) }}
+                {{ audiences(course, sortedAudiences, identity) | replace("dash", "-") }}
             {% endblock %}
         </div>
         {% endif %}
