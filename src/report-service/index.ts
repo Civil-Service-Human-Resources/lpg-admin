@@ -22,4 +22,10 @@ export class ReportService {
 
 		return this.http.get(reportUrl)
 	}
+
+	getReportForMandatoryCourses(dateRange: DateStartEnd) {
+		const reportUrl = `${this.config.url}/mandatory-courses?from=${dateRange.startDate}&to=${dateRange.endDate}`
+
+		return this.http.get(reportUrl)
+	}
 }

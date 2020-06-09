@@ -120,7 +120,7 @@
                             </div>
                         </div>
                     <li class="course list-details u--border--bgrey">
-                        <form action="/reporting/learner-record" method="post">
+                        <form action="/reporting/learner-record/module" method="post">
                             {{ govukDateInput({
                                 id: "start-date",
                                 name: "start-date",
@@ -200,6 +200,106 @@
                                 text: "Download report",
                                 classes: "button-blue left-aligned"
                             }) }}
+                        </form>
+                    </li>
+                    </li>
+                    <li class="course list-details u--border--bgrey">
+                        <div class="course-details">
+                            <h2 class="govuk-heading-m">Learning record information - mandatory courses</h2>
+                            <div class="govuk-body no-margin">
+                                <p>This report contains information relating to the learning records for all learners in your organisation or area of work.</p>
+                                <p>The information in this report includes:</p>
+                                <ul class="bullet govuk-body no-margin">
+                                    <li>learner name and ID</li>
+                                    <li>learner profile information</li>
+                                    <li>progress status of mandatory courses</li>
+                                    <li>dates of completion and recent activity for mandatory courses</li>
+                                </ul>
+                                <p>The availability of this information depends on your level of reporting access.</p>
+                            </div>
+                        </div>
+                        <li class="course list-details u--border--bgrey">
+                            <form action="/reporting/learner-record/mandatorycourses" method="post">
+                                {{ govukDateInput({
+                                    id: "start-date",
+                                    name: "start-date",
+                                    fieldset: {
+                                        legend: {
+                                            text: "Start date",
+                                            isPageHeading: true,
+                                            classes: "govuk-fieldset__legend--s"
+                                        }
+                                    },
+                                    hint: {
+                                        text: "For example, 31 3 " + placeholder.startYear
+                                    },
+                                    items: [
+                                        {
+                                            attributes: {
+                                                "maxLength": "2"
+                                            },
+                                            label: "Day",
+                                            name: "startDay",
+                                            value: placeholder.startDay,
+                                            classes: "govuk-input--width-3"
+                                        },
+                                        {
+                                            label: "Month",
+                                            name: "startMonth",
+                                            value: placeholder.startMonth,
+                                            classes: "govuk-input--width-3"
+                                        },
+                                        {
+                                            label: "Year",
+                                            name: "startYear",
+                                            value: placeholder.startYear,
+                                            classes: "govuk-input--width-5"
+                                        }
+                                    ]
+                                }) }}
+
+                                {{ govukDateInput({
+                                    id: "end-date",
+                                    name: "end-date",
+                                    fieldset: {
+                                        legend: {
+                                            text: "End date",
+                                            isPageHeading: true,
+                                            classes: "govuk-fieldset__legend--s"
+                                        }
+                                    },
+                                    hint: {
+                                        text: "For example, 31 3 " + placeholder.endYear
+                                    },
+                                    items: [
+                                        {
+                                            attributes: {
+                                                "maxLength": "2"
+                                            },
+                                            label: "Day",
+                                            name: "endDay",
+                                            value: placeholder.endDay,
+                                            classes: "govuk-input--width-3"
+                                        },
+                                        {
+                                            label: "Month",
+                                            name: "endMonth",
+                                            value: placeholder.endMonth,
+                                            classes: "govuk-input--width-3"
+                                        },
+                                        {
+                                            label: "Year",
+                                            name: "endYear",
+                                            value: placeholder.endYear,
+                                            classes: "govuk-input--width-5"
+                                        }
+                                    ]
+                                }) }}
+
+                                {{ govukButton({
+                                    text: "Download report",
+                                    classes: "button-blue left-aligned"
+                                }) }}
                         </form>
                     </li>
                     </li>
