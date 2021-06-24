@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv'
 export const ENV = process.env.NODE_ENV || 'development'
 
 if (ENV === 'development') {
-	const envFile = '/keybase/team/lpg/dev/dotenv'
+	const envFile = '/volumes/keybase/team/lpg/dev/dotenv'
 	try {
 		if (!fs.statSync(envFile).isFile()) {
 			throw new Error(`File not found: ${envFile}`)
