@@ -1,11 +1,10 @@
 import {NextFunction, Request, Response, Router} from 'express'
 import {ModuleFactory} from '../../learning-catalogue/model/factory/moduleFactory'
-import * as log4js from 'log4js'
 import {LearningCatalogue} from '../../learning-catalogue'
-
-const logger = log4js.getLogger('controllers/moduleController')
+import { getLogger } from '../../utils/logger'
 
 export class ModuleController {
+	logger = getLogger('ModuleController')
 	learningCatalogue: LearningCatalogue
 	moduleFactory: ModuleFactory
 	router: Router
@@ -34,7 +33,7 @@ export class ModuleController {
 	}
 
 	public addModule() {
-		logger.debug('Add module page')
+		this.logger.debug('Add module page')
 
 		return async (request: Request, response: Response) => {
 			response.render('page/course/module/add-module')

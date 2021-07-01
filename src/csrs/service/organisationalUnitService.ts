@@ -1,11 +1,10 @@
 import {OrganisationalUnitFactory} from '../model/organisationalUnitFactory'
 import {Csrs} from '../index'
-import * as log4js from 'log4js'
 import {AgencyTokenCapacityUsedHttpService} from '../../identity/agencyTokenCapacityUsedHttpService'
-
-const logger = log4js.getLogger('csrs/service/OrganisationalUnitService')
+import { getLogger } from '../../utils/logger'
 
 export class OrganisationalUnitService {
+	logger = getLogger('OrganisationalUnitService')
 	csrs: Csrs
 	organisationalUnitFactory: OrganisationalUnitFactory
 	agencyTokenCapacityUsedHttpService: AgencyTokenCapacityUsedHttpService
@@ -26,7 +25,7 @@ export class OrganisationalUnitService {
 
 		parent = await this.csrs.getOrganisationalUnit(`${organisationalUnit.id}/parent`).catch(error => {
 			if (error.response.status == 404) {
-				logger.debug(`Organisation ${organisationalUnit.id} has no parent`)
+				this.logger.debug(`Organisation ${organisationalUnit.id} has no parent`)
 			} else {
 				throw error
 			}

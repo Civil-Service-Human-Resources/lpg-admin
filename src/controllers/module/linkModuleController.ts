@@ -1,5 +1,4 @@
 import {NextFunction, Request, Response, Router} from 'express'
-import * as log4js from 'log4js'
 import {LearningCatalogue} from '../../learning-catalogue'
 import {LinkFactory} from '../../learning-catalogue/model/factory/linkFactory'
 import {Validator} from '../../learning-catalogue/validator/validator'
@@ -8,10 +7,10 @@ import moment = require('moment')
 import {CourseService} from 'lib/courseService'
 import {LinkModule} from '../../learning-catalogue/model/linkModule'
 import * as asyncHandler from 'express-async-handler'
-
-const logger = log4js.getLogger('controllers/linkModuleController')
+import { getLogger } from '../../utils/logger'
 
 export class LinkModuleController {
+	logger = getLogger('LinkModuleController')
 	learningCatalogue: LearningCatalogue
 	linkFactory: LinkFactory
 	moduleValidator: Validator<Module>
@@ -66,7 +65,7 @@ export class LinkModuleController {
 	}
 
 	public addLinkModule() {
-		logger.debug('Add module page')
+		this.logger.debug('Add module page')
 
 		return async (request: Request, response: Response) => {
 			response.render('page/course/module/module-link')

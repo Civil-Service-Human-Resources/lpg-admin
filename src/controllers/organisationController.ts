@@ -8,11 +8,10 @@ import {FormController} from './formController'
 import {Validator} from '../learning-catalogue/validator/validator'
 import {Validate} from './formValidator'
 import {OrganisationalUnitService} from '../csrs/service/organisationalUnitService'
-import * as log4js from 'log4js'
-
-const logger = log4js.getLogger('controllers/OrganisationController')
+import { getLogger } from '../utils/logger'
 
 export class OrganisationController implements FormController {
+	logger = getLogger('OrganisationController')
 	router: Router
 	csrs: Csrs
 	organisationalUnitFactory: OrganisationalUnitFactory
@@ -95,7 +94,7 @@ export class OrganisationController implements FormController {
 		return async (request: Request, response: Response) => {
 			const organisationalUnit = this.organisationalUnitFactory.create(request.body)
 
-			logger.debug(`Creating new organisation: ${organisationalUnit.name}`)
+			this.logger.debug(`Creating new organisation: ${organisationalUnit.name}`)
 
 			try {
 				const newOrganisationalUnit: OrganisationalUnit = await this.csrs.createOrganisationalUnit(organisationalUnit)
@@ -123,7 +122,7 @@ export class OrganisationController implements FormController {
 		return async (request: Request, response: Response) => {
 			let organisationalUnit = response.locals.organisationalUnit
 
-			logger.debug(`Updating organisation: ${organisationalUnit.id}`)
+			this.logger.debug(`Updating organisation: ${organisationalUnit.id}`)
 
 			const data = {
 				name: request.body.name || organisationalUnit.name,

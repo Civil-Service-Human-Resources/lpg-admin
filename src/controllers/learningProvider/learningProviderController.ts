@@ -1,5 +1,4 @@
 import {Request, Response, Router} from 'express'
-import * as log4js from 'log4js'
 import {Pagination} from 'lib/pagination'
 import {LearningCatalogue} from '../../learning-catalogue'
 import {LearningProviderFactory} from '../../learning-catalogue/model/factory/learningProviderFactory'
@@ -7,10 +6,11 @@ import {DefaultPageResults} from '../../learning-catalogue/model/defaultPageResu
 import {LearningProvider} from '../../learning-catalogue/model/learningProvider'
 import {Validator} from '../../learning-catalogue/validator/validator'
 import * as asyncHandler from 'express-async-handler'
+import { getLogger } from '../../utils/logger'
 
-const logger = log4js.getLogger('controllers/learningProviderController')
 
 export class LearningProviderController {
+	logger = getLogger('LearningProviderController')
 	learningCatalogue: LearningCatalogue
 	learningProviderValidator: Validator<LearningProvider>
 	learningProviderFactory: LearningProviderFactory
@@ -53,7 +53,7 @@ export class LearningProviderController {
 	}
 
 	public index() {
-		logger.debug('Getting Learning Providers')
+		this.logger.debug('Getting Learning Providers')
 		return async (request: Request, response: Response) => {
 			let {page, size} = this.pagination.getPageAndSizeFromRequest(request)
 

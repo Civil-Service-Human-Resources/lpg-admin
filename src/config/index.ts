@@ -29,30 +29,13 @@ function set<T>(defaultValue: T, envValues: Record<string, T> = {}): T {
 
 const env: Record<string, string> = new Proxy({}, {get: getEnv})
 
+export const APPLICATIONINSIGHTS_CONNECTION_STRING = env.APPLICATIONINSIGHTS_CONNECTION_STRING
+
 export const CONTENT_URL = env.CONTENT_URL || 'http://cdn.local.learn.civilservice.gov.uk/lpgdevcontent'
 
 export const CONTENT_CONTAINER = env.CONTENT_CONTAINER || 'lpgdevcontent'
 
-export const LOGGING = set(
-	{
-		appenders: {
-			out: {type: 'console'},
-		},
-		categories: {
-			default: {appenders: ['out'], level: 'info'},
-		},
-	},
-	{
-		development: {
-			appenders: {
-				out: {type: 'console'},
-			},
-			categories: {
-				default: {appenders: ['out'], level: 'debug'},
-			},
-		},
-	}
-)
+export const LOGGING_LEVEL = env.LOGGING_LEVEL
 
 export const AUTHENTICATION = set({
 	clientId: env.OAUTH_CLIENT_ID || 'a5881544-6159-4d2f-9b51-8c47ce97454d',
@@ -104,7 +87,5 @@ export const CACHE = {
 	TTL_SECONDS: 3600,
 	CHECK_PERIOD_SECONDS: 600,
 }
-
-export const INSTRUMENTATION_KEY = env.instrumentation_key || 'instrumentation_key'
 
 export const SERVER_TIMEOUT_MS = Number(env.SERVER_TIMEOUT_MS) || 240000

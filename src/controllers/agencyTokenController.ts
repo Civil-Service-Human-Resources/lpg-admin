@@ -1,6 +1,5 @@
 import {NextFunction, Request, Response, Router} from 'express'
 import * as asyncHandler from 'express-async-handler'
-import * as log4js from 'log4js'
 import {AgencyToken} from '../csrs/model/agencyToken'
 import {AgencyTokenService} from '../lib/agencyTokenService'
 import {FormController} from './formController'
@@ -10,10 +9,10 @@ import {Validator} from '../learning-catalogue/validator/validator'
 import {Validate} from './formValidator'
 import {AgencyTokenFactory} from '../csrs/model/agencyTokenFactory'
 import {Csrs} from '../csrs'
-
-const logger = log4js.getLogger('controllers/AgencyTokenController')
+import { getLogger } from '../utils/logger'
 
 export class AgencyTokenController implements FormController {
+	logger = getLogger('AgencyTokenController')
 	router: Router
 	validator: Validator<AgencyToken>
 	agencyTokenService: AgencyTokenService
@@ -114,7 +113,7 @@ export class AgencyTokenController implements FormController {
 		return async (request: Request, response: Response, next: NextFunction) => {
 			const organisationalUnit: OrganisationalUnit = response.locals.organisationalUnit
 
-			logger.debug(`Adding agency token to organisation: ${organisationalUnit.name}`)
+			this.logger.debug(`Adding agency token to organisation: ${organisationalUnit.name}`)
 
 			const capacityIsValid = this.agencyTokenService.validateCapacity(request.body.capacity)
 			if (!capacityIsValid) {
@@ -171,7 +170,7 @@ export class AgencyTokenController implements FormController {
 		return async (request: Request, response: Response, next: NextFunction) => {
 			const organisationalUnit: OrganisationalUnit = response.locals.organisationalUnit
 
-			logger.debug(`Updating agency token for organisation: ${organisationalUnit.name}`)
+			this.logger.debug(`Updating agency token for organisation: ${organisationalUnit.name}`)
 
 			const capacityIsValid = this.agencyTokenService.validateCapacity(request.body.capacity)
 			if (!capacityIsValid) {
@@ -235,7 +234,7 @@ export class AgencyTokenController implements FormController {
 		return async (request: Request, response: Response, next: NextFunction) => {
 			const organisationalUnit = response.locals.organisationalUnit
 
-			logger.debug(`Deleting agency token from organisation: ${organisationalUnit.name}`)
+			this.logger.debug(`Deleting agency token from organisation: ${organisationalUnit.name}`)
 
 			await this.csrs
 				.deleteAgencyToken(organisationalUnit.id)

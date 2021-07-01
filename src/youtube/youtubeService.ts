@@ -1,12 +1,11 @@
-import * as log4js from 'log4js'
 import {Auth} from '../identity/auth'
 import {YoutubeRestService} from './youtubeRestService'
 import {YoutubeConfig} from './youtubeConfig'
 import {DateTime} from '../lib/dateTime'
-
-const logger = log4js.getLogger('learning-catalogue/service/restService')
+import { getLogger } from '../utils/logger'
 
 export class YoutubeService {
+	logger = getLogger('YoutubeService')
 	youtubeConfig: YoutubeConfig
 	_restService: YoutubeRestService
 	api_key: String
@@ -28,7 +27,7 @@ export class YoutubeService {
 				}`
 			)
 		} catch (err) {
-			logger.error(`Error fetching metadata from YouTube: ${err}`)
+			this.logger.error(`Error fetching metadata from YouTube: ${err}`)
 		}
 	}
 
@@ -74,7 +73,7 @@ export class YoutubeService {
 				}`
 			)
 		} catch (err) {
-			logger.error(`Error fetching metadata from YouTube: ${err}`)
+			this.logger.error(`Error fetching metadata from YouTube: ${err}`)
 			return
 		}
 

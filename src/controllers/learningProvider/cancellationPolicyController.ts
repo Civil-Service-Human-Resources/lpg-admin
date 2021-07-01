@@ -1,13 +1,12 @@
 import {Request, Response, Router} from 'express'
-import * as log4js from 'log4js'
 import {LearningCatalogue} from '../../learning-catalogue'
 import {CancellationPolicyFactory} from '../../learning-catalogue/model/factory/cancellationPolicyFactory'
 import {Validator} from '../../learning-catalogue/validator/validator'
 import {CancellationPolicy} from '../../learning-catalogue/model/cancellationPolicy'
-
-const logger = log4js.getLogger('controllers/learningProviderController')
+import { getLogger } from '../../utils/logger'
 
 export class CancellationPolicyController {
+	logger = getLogger('CancellationPolicyController')
 	learningCatalogue: LearningCatalogue
 	cancellationPolicyValidator: Validator<CancellationPolicy>
 	cancellationPolicyFactory: CancellationPolicyFactory
@@ -73,7 +72,7 @@ export class CancellationPolicyController {
 	}
 
 	public getCancellationPolicy() {
-		logger.debug('Getting cancellation policy')
+		this.logger.debug('Getting cancellation policy')
 		return async (request: Request, response: Response) => {
 			response.render('page/learning-provider/cancellation-policy')
 		}

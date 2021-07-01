@@ -3,12 +3,10 @@ import {LearningCatalogue} from '../learning-catalogue'
 import {Course} from '../learning-catalogue/model/course'
 import {DefaultPageResults} from '../learning-catalogue/model/defaultPageResults'
 
-import * as log4js from 'log4js'
 import * as striptags from 'striptags'
 import {Pagination} from 'lib/pagination'
 
 export class SearchController {
-	logger = log4js.getLogger('controllers/searchController')
 	router: Router
 	learningCatalogue: LearningCatalogue
 	pagination: Pagination

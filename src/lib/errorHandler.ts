@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from 'express'
-import * as log4js from 'log4js'
+import { getLogger } from '../utils/logger'
 
-const logger = log4js.getLogger('controllers/home')
+const logger = getLogger('errorHandler')
 
 export async function handleError(error: any, request: Request, response: Response, next: NextFunction) {
 	try {

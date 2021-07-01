@@ -13,10 +13,10 @@ import {DateTime} from '../lib/dateTime'
 import {Validate} from './formValidator'
 import {FormController} from './formController'
 import * as asyncHandler from 'express-async-handler'
-import * as log4js from 'log4js'
+import { getLogger } from '../utils/logger'
 
 export class CourseController implements FormController {
-	logger = log4js.getLogger('controllers/homeController')
+	logger = getLogger('CourseController')
 	learningCatalogue: LearningCatalogue
 	validator: Validator<Course>
 	courseFactory: CourseFactory

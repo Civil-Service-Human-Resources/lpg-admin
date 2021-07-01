@@ -1,11 +1,9 @@
 import {NextFunction, Request, Response} from 'express'
 import {LearningCatalogue} from '../learning-catalogue'
 
-import * as log4js from 'log4js'
 import {Pagination} from 'lib/pagination'
 
 export class HomeController {
-	logger = log4js.getLogger('controllers/homeController')
 	learningCatalogue: LearningCatalogue
 	pagination: Pagination
 

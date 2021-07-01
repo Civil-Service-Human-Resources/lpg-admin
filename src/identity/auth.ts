@@ -1,18 +1,17 @@
 import {NextFunction, Request, Response, Handler} from 'express'
-import * as log4js from 'log4js'
 import {PassportStatic} from 'passport'
 import {IdentityService} from './identityService'
 import * as oauth2 from 'passport-oauth2'
 import {Identity} from './identity'
 import {AuthConfig} from './authConfig'
 import {EnvValue} from 'ts-json-properties'
-
-const logger = log4js.getLogger('config/passport')
+import { getLogger } from '../utils/logger'
 
 export class Auth {
 	readonly REDIRECT_COOKIE_NAME: string = 'redirectTo'
 	readonly HTTP_UNAUTHORISED: number = 401
 
+	logger = getLogger('Auth')
 	config: AuthConfig
 	passportStatic: PassportStatic
 	identityService: IdentityService
@@ -76,7 +75,7 @@ export class Auth {
 
 				cb(null, identityDetails)
 			} catch (e) {
-				logger.warn(`Error retrieving user profile information`, e)
+				this.logger.warn(`Error retrieving user profile information`, e)
 				cb(e)
 			}
 		}
@@ -105,7 +104,7 @@ export class Auth {
 		return (req: Request, res: Response) => {
 			const redirect = req.cookies[this.REDIRECT_COOKIE_NAME]
 			if (!redirect) {
-				logger.info('Passport session not present on express request - redirecting to root')
+				this.logger.info('Passport session not present on express request - redirecting to root')
 				res.redirect('/')
 				return
 			}
@@ -136,7 +135,7 @@ export class Auth {
 					return next()
 				} else {
 					if (req.user && req.user.uid) {
-						logger.error('Rejecting non-admin user ' + req.user.uid + ' with IP '
+						this.logger.error('Rejecting non-admin user ' + req.user.uid + ' with IP '
 							+ req.ip + ' from page ' + req.originalUrl)
 					}
 					try {
@@ -146,7 +145,7 @@ export class Auth {
 						res.locals.lpgUiUrl = this.lpgUiUrl
 						return res.redirect(this.lpgUiUrl.toString())
 					} catch (e) {
-						logger.warn(`Error logging user out`, e)
+						this.logger.warn(`Error logging user out`, e)
 						res.cookie(this.REDIRECT_COOKIE_NAME, this.lpgUiUrl)
 						res.locals.lpgUiUrl = this.lpgUiUrl
 						return res.redirect(this.lpgUiUrl.toString())
@@ -169,7 +168,7 @@ export class Auth {
 					res.locals.lpgUiUrl = this.lpgUiUrl
 					return res.redirect(this.lpgUiUrl.toString())
 				} catch (e) {
-					logger.warn(`Error logging user out`, e)
+					this.logger.warn(`Error logging user out`, e)
 					res.cookie(this.REDIRECT_COOKIE_NAME, this.lpgUiUrl)
 					res.locals.lpgUiUrl = this.lpgUiUrl
 					return res.redirect(this.lpgUiUrl.toString())

@@ -1,5 +1,4 @@
 import * as config from './config'
-import * as log4js from 'log4js'
 import {HomeController} from './controllers/homeController'
 import axios, {AxiosInstance} from 'axios'
 import {IdentityService} from './identity/identityService'
@@ -81,8 +80,6 @@ import {AgencyTokenService} from './lib/agencyTokenService'
 import {AgencyTokenController} from './controllers/agencyTokenController'
 import {AgencyTokenCapacityUsedHttpService} from './identity/agencyTokenCapacityUsedHttpService'
 import {AgencyTokenCapacityUsedFactory} from './identity/model/AgencyTokenCapacityUsedFactory'
-
-log4js.configure(config.LOGGING)
 
 export class ApplicationContext {
 	identityService: IdentityService

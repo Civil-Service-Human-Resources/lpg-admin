@@ -20,11 +20,11 @@ import {Validate} from '../../formValidator'
 import {FormController} from '../../formController'
 import {Course} from '../../../learning-catalogue/model/course'
 import {Module} from '../../../learning-catalogue/model/module'
-import * as log4js from 'log4js'
+import { getLogger } from '../../../utils/logger'
 import * as EmailValidator from 'email-validator'
 
 export class EventController implements FormController {
-	logger = log4js.getLogger('controllers/homeController')
+	logger = getLogger('EventController')
 	learningCatalogue: LearningCatalogue
 	learnerRecord: LearnerRecord
 	validator: Validator<Booking>

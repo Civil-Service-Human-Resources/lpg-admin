@@ -1,25 +1,21 @@
 /* tslint:disable:no-var-requires */
 import * as config from './config'
+import appInsights = require('applicationinsights')
+appInsights.setup(config.APPLICATIONINSIGHTS_CONNECTION_STRING)
+.setAutoCollectConsole(true)
 
-const appInsights = require('applicationinsights')
-appInsights
-	.setup(config.INSTRUMENTATION_KEY)
-	.setAutoDependencyCorrelation(true)
-	.setAutoCollectRequests(true)
-	.setAutoCollectPerformance(true)
-	.setAutoCollectExceptions(true)
-	.setAutoCollectDependencies(true)
-	.setAutoCollectConsole(true, true)
-	.setUseDiskRetryCaching(true)
-	.start()
+appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = "lpg-management"
+appInsights.start()
+
+
 /* tslint:enable */
 
+import { getLogger } from './utils/logger'
 import * as express from 'express'
 import * as session from 'express-session'
 import * as cookieParser from 'cookie-parser'
 import * as connectRedis from 'connect-redis'
 import * as redis from 'redis'
-import * as log4js from 'log4js'
 
 import * as serveStatic from 'serve-static'
 import {Properties} from 'ts-json-properties'
@@ -34,7 +30,8 @@ import {Duration} from 'moment'
 import {OrganisationalUnit} from './csrs/model/organisationalUnit'
 
 Properties.initialize()
-const logger = log4js.getLogger('server')
+
+const logger = getLogger('server')
 const nunjucks = require('nunjucks')
 const jsonpath = require('jsonpath')
 const appRoot = require('app-root-path')
@@ -102,14 +99,6 @@ app.use('/js', serveStatic(appRoot + '/views/assets/js'))
 app.use(serveStatic(appRoot + '/dist/views/assets'))
 app.use('/govuk-frontend', serveStatic(appRoot + '/node_modules/govuk-frontend/govuk/'))
 app.use('/sortablejs', serveStatic(appRoot + '/node_modules/sortablejs/'))
-
-app.use(
-	log4js.connectLogger(logger, {
-		format: ':method :url',
-		level: 'trace',
-		nolog: '\\.js|\\.css|\\.gif|\\.jpg|\\.png|\\.ico$',
-	})
-)
 
 const RedisStore = connectRedis(session)
 const redisClient = redis.createClient({
